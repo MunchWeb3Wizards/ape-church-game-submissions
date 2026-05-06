@@ -7,7 +7,6 @@ import GameWindow from "@/components/shared/GameWindow";
 import MyGameWindow from "./MyGameWindow";
 import MyGameSetupCard from "./MyGameSetupCard";
 import {
-  myGame,
   BLACKJACK_MAX_BET,
   BLACKJACK_MIN_BET,
   BLACKJACK_PAYOUT_MULTIPLIER,
@@ -31,11 +30,10 @@ import { toast } from "sonner";
 import "./my-game.styles.css";
 
 interface MyGameComponentProps {
-  game?: Game;
+  game: Game;
 }
 
 const MyGameComponent: React.FC<MyGameComponentProps> = ({ game }) => {
-  const safeGame: Game = game ?? myGame;
   const router = useRouter();
   const searchParams = useSearchParams();
   const replayIdString = searchParams.get("id");
@@ -533,7 +531,7 @@ const MyGameComponent: React.FC<MyGameComponentProps> = ({ game }) => {
     <div>
       <div className="flex flex-col lg:flex-row gap-4 sm:gap-8 lg:gap-10">
         <GameWindow
-          game={safeGame}
+          game={game}
           currentGameId={currentGameId}
           isLoading={isLoading}
           isGameFinished={gameOver}
@@ -550,7 +548,7 @@ const MyGameComponent: React.FC<MyGameComponentProps> = ({ game }) => {
           resultModalDelayMs={1000}
         >
           <MyGameWindow
-            game={safeGame}
+            game={game}
             phase={gameState.phase}
             playerCards={gameState.playerCards}
             dealerCards={gameState.dealerCards}
@@ -568,7 +566,7 @@ const MyGameComponent: React.FC<MyGameComponentProps> = ({ game }) => {
         </GameWindow>
 
         <MyGameSetupCard
-          game={safeGame}
+          game={game}
           onPlay={async () => await playGame()}
           onSpin={handleStateAdvance}
           onRewatch={handleRewatch}
