@@ -73,20 +73,20 @@ const MyGameWindow: React.FC<MyGameWindowProps> = ({
   payoutAmount,
   outcome,
 }) => {
-  const muteSfx = false;
-  const sfxVolume = 0.5;
+  const muteSfx = true;
+const sfxVolume = 0.5;
 
-  const [winSFX] = useSound("/my-game/sfx/win.mp3", {
-    volume: sfxVolume,
-    soundEnabled: !muteSfx,
-    interrupt: true,
-  });
+const [winSFX] = useSound("/my-game/sfx/win.mp3", {
+  volume: sfxVolume,
+  soundEnabled: !muteSfx,
+  interrupt: true,
+});
 
-  const [loseSFX] = useSound("/my-game/sfx/lose.mp3", {
-    volume: sfxVolume,
-    soundEnabled: !muteSfx,
-    interrupt: true,
-  });
+const [loseSFX] = useSound("/my-game/sfx/lose.mp3", {
+  volume: sfxVolume,
+  soundEnabled: !muteSfx,
+  interrupt: true,
+});
 
   useEffect(() => {
     if (!gameCompleted) return;
